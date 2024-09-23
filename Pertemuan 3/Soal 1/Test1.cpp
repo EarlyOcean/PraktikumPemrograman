@@ -1,22 +1,29 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
-
-double a, b, c;
-
-// menggunakan fungsi agar test code lebih mudah
-void calculate();
-
+void calculate(double a, double b, double c);
 
 int main(){
-    cin >> a >> b >> c;
-    calculate();
+    double a, b, c;
+    ifstream myfile("testcase.txt");
+
+    string text;
+    while (getline(myfile, text)) {
+        cout << "Input: " << text << endl;
+        istringstream strm(text);
+        strm >> a;
+        strm >> b;
+        strm >> c;
+        cout << "Output: "; calculate(a, b, c);
+        cout << endl;
+    }
 }
 
-
-void calculate(){
+void calculate(double a, double b, double c){
     double disc = b * b - 4 * a * c;
 
     if(disc > 0){
