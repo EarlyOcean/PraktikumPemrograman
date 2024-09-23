@@ -1,24 +1,24 @@
-# Variables
 CXX = g++
 CXXFLAGS = -Wall -g
 
-# Target executable name
-TARGET = Problem1
+TARGET = Problem
+TEST_TARGET = Test
 
-# Source file
 SRCS = Problem1.cpp
+TEST_SRC = Test1.cpp
 
-# Rule to build the target (default target)
-all: $(TARGET)
-
-# Rule to build the executable from the source
 $(TARGET): $(SRCS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)
 
-# Clean rule to remove compiled files
+$(TEST_TARGET): $(TEST_SRC)
+	$(CXX) $(CXXFLAGS) -o $(TEST_TARGET) $(TEST_SRC)
+
+run: $(TARGET)
+	./$(TARGET)
+
 clean:
 	rm -f $(TARGET)
+	rm -f $(TEST_TARGET)
 
-# Optional rule for cleaning object files (if needed in future)
-clean_all:
-	rm -f $(TARGET) *.o
+test: $(TEST_TARGET)
+	./$(TEST_TARGET)

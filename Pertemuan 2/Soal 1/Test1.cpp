@@ -1,24 +1,42 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <fstream>
+#include <sstream>
 using namespace std;
 #define ll long long
 
-const float TAX_PERCENTAGE = 0.2;
+const double TAX_PERCENTAGE = 0.2;
 
-string name = "John Doe";
-ll gross_salary = 15000000; 
-ll installment = 200000; 
-ll insurance = 150000;
+string name;
+ll gross_salary; 
+ll installment; 
+ll insurance ;
 
-// menggunakan fungsi agar test code lebih mudah
 void calculate();
-// fungsi untuk mengkonversi angka ke format nilai rupiah
 string to_currency_format(ll num);
 
 
 int main(){
-    calculate();
+    ifstream myfile("testcase.txt");
+
+    string text;
+    while (getline(myfile, text)) {
+        name = text;
+        getline(myfile, text);
+        istringstream strm(text);
+        strm >> gross_salary;
+        strm >> installment;
+        strm >> insurance;
+
+        cout << "Input: " << endl;
+        cout << name << endl;
+        cout << gross_salary << endl;
+        cout << installment << endl;
+        cout << insurance << endl;
+        cout << "Output: " << endl; calculate();
+        cout << endl;
+    }
 }
 
 
